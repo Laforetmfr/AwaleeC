@@ -95,7 +95,7 @@ void semer_graines(int joueur, int case_depart) {
             }
         }
 
-        if (!(camp == joueur && i == case_depart)) { // Ne pas ressemer dans la case d'origine
+        if (!(camp == joueur && i == case_depart)) { // Pour empêcher de ressemer dans la case d'origine
             plateau[camp][i]++;
             graines--;
         }
@@ -105,8 +105,8 @@ void semer_graines(int joueur, int case_depart) {
     int adversaire = 1 - joueur;
     if (camp == adversaire) {
         while (i >= 0 && i < TAILLE_PLATEAU && (plateau[adversaire][i] == 2 || plateau[adversaire][i] == 3)) {
-            score[joueur] += plateau[adversaire][i]; // Ajouter les graines au score
-            plateau[adversaire][i] = 0;             // Vider la case capturée
+            score[joueur] += plateau[adversaire][i]; // Ajoute les graines au score
+            plateau[adversaire][i] = 0;             // Vide la case capturée
             if (camp == 1) i--; // Avance vers la gauche si camp du haut
             else i++; // Avance vers la droite si camp du bas
         }
@@ -184,7 +184,7 @@ int main(int argc, char* argv[]) {
                     if (fin_de_partie()) {
                         afficher_message_fin(renderer, font);  // Appel à la fonction afficher_message_fin
                         SDL_RenderPresent(renderer);  // Assure que le message est bien affiché
-                        SDL_Delay(5000);  // Attendre 5 secondes avant de quitter
+                        SDL_Delay(5000);  // Attend 5 secondes avant de quitter
                         quit = 1;  // Met fin à la boucle après la fin de partie
                     }
                     joueur = 1 - joueur;  // Change de joueur
